@@ -18,10 +18,10 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import CustomInput from './CustomInput'
+import { authFormSchema } from '@/lib/utils'
 
-const formSchema = z.object({
-    email: z.string().email(),
-  })
+
 
 const AuthForm = ({ type }: {type: string}) => {
 
@@ -29,15 +29,16 @@ const AuthForm = ({ type }: {type: string}) => {
 
     
         // 1. Define your form.
-        const form = useForm<z.infer<typeof formSchema>>({
-          resolver: zodResolver(formSchema),
+        const form = useForm<z.infer<typeof authFormSchema>>({
+          resolver: zodResolver(authFormSchema),
           defaultValues: {
             email: "",
+            password: ""
           },
         })
        
         // 2. Define a submit handler.
-        function onSubmit(values: z.infer<typeof formSchema>) {
+        function onSubmit(values: z.infer<typeof authFormSchema>) {
           // Do something with the form values.
           // ✅ This will be type-safe and validated.
           console.log(values)
@@ -93,6 +94,13 @@ const AuthForm = ({ type }: {type: string}) => {
                                   </div>
                               )}
                           />
+                            <CustomInput
+                                control={form.control} name="username" label="username" placeholder="Enter your username"
+                            />
+                            <CustomInput
+                                control={form.control} name="password" label="password" placeholder="Enter your password"
+                            />
+
                           <FormField
                               control={form.control}
                               name="password"
