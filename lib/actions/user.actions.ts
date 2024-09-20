@@ -2,6 +2,7 @@
 
 import { ID } from "node-appwrite"
 import { createAdminClient, createSessionClient } from "../appwrite"
+import { cookies } from "next/headers"
 
 export const signIn = async () => {
     try {
@@ -19,7 +20,7 @@ export const signUp = async (userData: SignUpParams) => {
         const newUserAccount = await account.create(ID.unique(), email, password, `${firstName} ${lastName}`);
         const session = await account.createEmailPasswordSession(email, password);
 
-        cookies().set("my-custom-session", session.secret, {
+        cookies().set("appwrite-session", session.secret, {
             path: "/",
             httpOnly: true,
             sameSite: "strict",
