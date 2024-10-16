@@ -5,7 +5,7 @@ const Footer = ({ user }: FooterProps) => {
     <footer className='footer'>
         <div className='footer_name'>
             <p>
-                 {user.firstName[0]}
+                 {"test"}
             </p>
         </div>
     </footer>
