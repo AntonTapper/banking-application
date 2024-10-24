@@ -10,8 +10,11 @@ export default async function RootLayout({
 }>) {
 
   const loggedIn = await getLoggedInUser()
-
+  console.log(loggedIn,"aaa");
+  
   return (
+    
+    
     <main className="flex h-screen w-full font-inter">
         <Sidebar user={loggedIn}/>
 
