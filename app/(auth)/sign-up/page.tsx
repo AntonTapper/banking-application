@@ -3,7 +3,6 @@ import { getLoggedInUser } from '@/lib/actions/user.actions'
 
 const SignUp = async () => {
   
-  
   const loggedInUser = await getLoggedInUser()
 
   console.log(loggedInUser.name[0]);
